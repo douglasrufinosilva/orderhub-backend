@@ -1,6 +1,9 @@
+// Criar migrate > npx prisma migrate dev (sempre que gerar uma novam migration, gerar nova pasta generated)
+// Gerar pasta generated novamente > npx prisma generate
+
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
