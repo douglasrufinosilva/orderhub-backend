@@ -5,27 +5,26 @@ class DetailUserService {
     try {
       const user = await prismaClient.user.findFirst({
         where: {
-          id: user_id
+          id: user_id,
         },
         select: {
           id: true,
           name: true,
           email: true,
           role: true,
-          createdAt: true
-        }
-      })
+          createdAt: true,
+        },
+      });
 
       if (!user) {
-        throw new Error("Usuário não encontrado.")
+        throw new Error("Usuário não encontrado.");
       }
 
-      return user
-
+      return user;
     } catch (error) {
-      throw new Error("Usuário não encontrado!")
+      throw new Error("Usuário não encontrado!");
     }
   }
 }
 
-export { DetailUserService }
+export { DetailUserService };

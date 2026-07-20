@@ -1,7 +1,7 @@
-import { prismaClient } from "../../prisma"
+import { prismaClient } from "../../prisma";
 
 interface CreateCategoryProps {
-  name: string
+  name: string;
 }
 
 class CreateCategoryService {
@@ -9,24 +9,20 @@ class CreateCategoryService {
     try {
       const category = await prismaClient.category.create({
         data: {
-          name: name
+          name: name,
         },
         select: {
           id: true,
           name: true,
-          createdAt: true
-        }
-      })
+          createdAt: true,
+        },
+      });
 
-      return category
-      
+      return category;
     } catch (error) {
-
-      throw new Error("Falha ao criar categoria.")
+      throw new Error("Falha ao criar categoria.");
     }
-
-
   }
 }
 
-export { CreateCategoryService }
+export { CreateCategoryService };

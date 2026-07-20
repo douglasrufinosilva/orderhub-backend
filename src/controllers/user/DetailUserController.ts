@@ -3,15 +3,14 @@ import { DetailUserService } from "../../services/user/DetaiUserService";
 
 class DetailUserController {
   async handle(req: Request, res: Response) {
+    const user_id = req.user_id;
 
-    const user_id = req.user_id
+    const detailUserService = new DetailUserService();
 
-    const detailUserService = new DetailUserService()
+    const user = await detailUserService.execute(user_id);
 
-    const user = await detailUserService.execute(user_id)
-
-    res.status(200).json(user)
+    res.status(200).json(user);
   }
 }
 
-export { DetailUserController }
+export { DetailUserController };
