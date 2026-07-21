@@ -1,7 +1,6 @@
 import { prismaClient } from "../../prisma";
 import cloudinary from "../../config/cloudinary";
 import { Readable } from "stream";
-import { number } from "zod";
 
 interface CreateProductServiceProps {
   name: string;

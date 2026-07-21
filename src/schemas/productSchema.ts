@@ -12,3 +12,9 @@ export const createProductSchema = z.object({
       .min(1, { message: "A categoria do produto é obrigatória." }),
   }),
 });
+
+export const listProductsSchema = z.object({
+  query: z.object({
+    disabled: z.string().optional(),
+  }),
+});

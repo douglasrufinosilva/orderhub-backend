@@ -12,7 +12,11 @@ import { isAdmin } from "./middlewares/isAdmin";
 import { createCategorySchema } from "./schemas/categorySchema";
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
 import { CreateProductController } from "./controllers/product/CreateProductController";
-import { createProductSchema } from "./schemas/productSchema";
+import {
+  createProductSchema,
+  listProductsSchema,
+} from "./schemas/productSchema";
+import { ListProductController } from "./controllers/product/ListProductController";
 
 const router = Router();
 const upload = multer(uploadConfig);
@@ -53,6 +57,13 @@ router.post(
   upload.single("file"),
   validateSchema(createProductSchema),
   new CreateProductController().handle,
+);
+
+router.get(
+  "/products",
+  isAuthenticated,
+  validateSchema(listProductsSchema),
+  new ListProductController().handle,
 );
 
 export { router };
