@@ -7,9 +7,21 @@ interface CreateCategoryProps {
 class CreateCategoryService {
   async execute({ name }: CreateCategoryProps) {
     try {
+      const normalizedName = name.trim().toLocaleLowerCase();
+
+      const categoryAlreadyExists = await prismaClient.category.findFirst({
+        where: {
+          name: normalizedName,
+        },
+      });
+
+      if (categoryAlreadyExists) {
+        throw new Error("A categoria já existe.");
+      }
+
       const category = await prismaClient.category.create({
         data: {
-          name: name,
+          name: normalizedName,
         },
         select: {
           id: true,
@@ -20,6 +32,9 @@ class CreateCategoryService {
 
       return category;
     } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
       throw new Error("Falha ao criar categoria.");
     }
   }
