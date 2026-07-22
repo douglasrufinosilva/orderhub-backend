@@ -9,9 +9,11 @@ interface CreateUserProps {
 
 class CreateUserService {
   async execute({ name, email, password }: CreateUserProps) {
+    const normalizedEmail = email.trim().toLocaleLowerCase();
+
     const userAlreadyExists = await prismaClient.user.findFirst({
       where: {
-        email: email,
+        email: normalizedEmail,
       },
     });
 
@@ -24,7 +26,7 @@ class CreateUserService {
     const user = await prismaClient.user.create({
       data: {
         name: name,
-        email: email,
+        email: normalizedEmail,
         password: passwordHash,
       },
       select: {
