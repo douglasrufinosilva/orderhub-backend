@@ -22,6 +22,7 @@ import { DeleteProductController } from "./controllers/product/DeleteProductCont
 import { ListProductByCategoryController } from "./controllers/product/ListProductByCategoryController";
 import { CreateOrderController } from "./controllers/order/CreateOrderController";
 import { createOrderSchema } from "./schemas/orderSchema";
+import { ListOrdersController } from "./controllers/order/ListOrdersController";
 
 const router = Router();
 const upload = multer(uploadConfig);
@@ -92,5 +93,7 @@ router.post(
   validateSchema(createOrderSchema),
   new CreateOrderController().handle,
 );
+
+router.get("/orders", isAuthenticated, new ListOrdersController().handle);
 
 export { router };
