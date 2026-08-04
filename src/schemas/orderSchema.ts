@@ -46,3 +46,11 @@ export const sendOrderSchema = z.object({
       .min(1, "O order_id é obrigatório."),
   }),
 });
+
+export const finishOrderSchema = z.object({
+  body: z.object({
+    order_id: z
+      .string("O ID do produto precisa ser uma string.")
+      .min(1, "O order_id é obrigatório."),
+  }),
+});
