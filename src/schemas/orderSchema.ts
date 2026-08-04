@@ -7,6 +7,14 @@ export const createOrderSchema = z.object({
   }),
 });
 
+export const detailOrderSchema = z.object({
+  query: z.object({
+    order_id: z
+      .string("O ID do pedido deve ser uma string.")
+      .min(1, "O order_id é obrigatório."),
+  }),
+});
+
 export const addItemSchema = z.object({
   body: z.object({
     order_id: z
