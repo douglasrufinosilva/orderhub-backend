@@ -24,6 +24,7 @@ import { CreateOrderController } from "./controllers/order/CreateOrderController
 import {
   addItemSchema,
   createOrderSchema,
+  deleteOrderSchema,
   detailOrderSchema,
   finishOrderSchema,
   removeItemSchema,
@@ -35,6 +36,7 @@ import { RemoveItemOrderController } from "./controllers/order/RemoveItemOrderCo
 import { DetailsOrderController } from "./controllers/order/DetailsOrderController";
 import { SendOrderController } from "./controllers/order/SendOrderController";
 import { FinishOrderController } from "./controllers/order/FinishOrderController";
+import { DeleteOrderController } from "./controllers/order/DeleteOrderController";
 
 const router = Router();
 const upload = multer(uploadConfig);
@@ -127,6 +129,13 @@ router.put(
   isAuthenticated,
   validateSchema(finishOrderSchema),
   new FinishOrderController().handle,
+);
+
+router.delete(
+  "/order",
+  isAuthenticated,
+  validateSchema(deleteOrderSchema),
+  new DeleteOrderController().handle,
 );
 
 // Adicionar Item a ordem
