@@ -25,6 +25,9 @@ class RemoveItemOrderService {
 
       return { message: "Item removido com sucesso!" };
     } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
       throw new Error("Falha ao remover item.");
     }
   }

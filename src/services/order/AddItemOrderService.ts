@@ -56,6 +56,9 @@ class AddItemOrderService {
 
       return item;
     } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
       throw new Error("Falha ao adicionar item no pedido.");
     }
   }

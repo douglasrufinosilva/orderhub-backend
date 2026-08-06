@@ -42,6 +42,9 @@ class DetailsOrderService {
 
       return order;
     } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
       throw new Error("Não foi possível obter os detalhes do pedido.");
     }
   }

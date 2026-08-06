@@ -38,6 +38,9 @@ class SendOrderSevice {
 
       return updateOrder;
     } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
       throw new Error("Falha ao enviar pedido.");
     }
   }

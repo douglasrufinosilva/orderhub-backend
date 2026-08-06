@@ -36,6 +36,9 @@ class FinishOrderService {
 
       return updateOrder;
     } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
       throw new Error("Falha ao finalizar pedido.");
     }
   }
